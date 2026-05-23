@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This document defines how MinSpec makes decisions about architecture, naming, repository creation, contribution boundaries, and public positioning.
+This document defines how MinSpec makes decisions about architecture, naming, repository creation, contribution boundaries, source authority, and public positioning.
 
-MinSpec is an independent community project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
+MinSpec is an independent project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
 
 ---
 
@@ -19,6 +19,7 @@ MinSpec prioritizes:
 5. reduced drift in both code and documentation
 6. respectful public positioning toward Symfony and the Symfony ecosystem
 7. safe, bounded AI/Mate tooling
+8. strict source-path and supply-chain control during incubation
 
 ---
 
@@ -78,7 +79,7 @@ Names that could imply official Symfony status require extra caution.
 
 ## Authority Model
 
-For now, MinSpec is architect-led.
+For now, MinSpec is founder-controlled and architect-led.
 
 That means:
 
@@ -87,21 +88,50 @@ That means:
 - speculative repo proliferation should be resisted
 - architecture-first review is expected for major structural changes
 - public positioning changes should be reviewed for Symfony/MinSpec distinction
+- public visibility does not imply public write access or contributor authority
+- AI/security tools may generate evidence, but they do not approve, merge, or mutate authority
+
+MinSpec may be publicly visible before it is publicly governable.
 
 ---
 
-## Contribution Expectations
+## Incubation Contribution Boundary
 
-Contributions are welcome when they improve the ecosystem without increasing ambiguity.
+During incubation, MinSpec does not accept unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, dependency changes, or AI-generated contribution patches.
 
-Contributors should:
+The project may accept:
 
-- preserve terminology
-- avoid scope creep
-- avoid speculative abstractions
-- discuss major repo/package boundary changes before implementation
-- avoid implying official Symfony endorsement
-- use vendor-neutral AI language in core docs
+- questions
+- reproducible bug reports
+- security reports through the published security process
+- design feedback
+- documentation clarity suggestions
+- evidence that an existing claim, package boundary, or workflow is wrong
+
+This feedback may inform maintainer decisions, but it does not create contributor status or source authority.
+
+Unsolicited pull requests may be closed without review.
+
+---
+
+## Source Authority and Supply Chain Rule
+
+Only official MinSpec repositories and explicitly approved source paths may provide code, documentation patches, workflows, package changes, recipes, or generated artifacts for trusted project use.
+
+MinSpec should not accept trusted source material from:
+
+- pasted code snippets
+- random third-party examples
+- unsolicited external pull requests
+- unreviewed generated code
+- unknown package sources
+- unapproved dependency changes
+- unapproved GitHub Actions or workflow edits
+- agent-generated mutations outside a controlled source path
+
+Security review is not a substitute for source authority.
+
+A change must enter through an approved source path before it can be considered for inclusion.
 
 ---
 
@@ -115,6 +145,7 @@ Examples:
 - branch protections should be configured per-repository
 - licenses should be managed per-repository
 - release policies should be set per package
+- stricter package/dependency rules may apply per repository
 
 ---
 
@@ -130,6 +161,8 @@ Review should ask:
 - Does this preserve Symfony-native terminology?
 - Does this preserve the Symfony/MinSpec distinction?
 - Does this keep AI assistance bounded and auditable?
+- Did this enter through an approved source path?
+- Does this preserve contributor and mutation authority boundaries?
 
 ---
 
@@ -146,6 +179,7 @@ Mutation tools require:
 - idempotency where practical
 - reviewable output
 - no silent host-level mutation
+- approved source-path control
 
 External agent experiments must be sandboxed and treated as experiments, not MinSpec architecture.
 
