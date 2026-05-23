@@ -2,7 +2,7 @@
 
 This document defines the naming conventions for MinSpec repositories and packages.
 
-MinSpec is an independent community project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
+MinSpec is an independent project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
 
 ---
 
@@ -73,6 +73,18 @@ Use a simple, direct name.
 Example:
 
 - `minspec/skeleton`
+
+### Namespace Anchor / Future Metapackage
+
+Use the vendor/package namespace name directly.
+
+Example:
+
+- `minspec/minspec`
+
+This repository reserves and represents the canonical Composer namespace and may later become a curated metapackage.
+
+It should remain intentionally minimal while it is only a namespace anchor. It must not be described as a working framework, distribution, bundle, or runtime implementation.
 
 ### Maintainer Workbench
 
@@ -194,15 +206,22 @@ Package segment:
 
 ## Current Functional Names
 
-- `minspec/.github` — organization doctrine, architecture, governance, terminology, and planning
+- `minspec/.github` — organization doctrine, architecture, governance, terminology, planning, and community health defaults
 - `minspec/skeleton` — project shell for new applications
+
+---
+
+## Created but Not Implementation-Complete Names
+
+- `minspec/minspec` — namespace anchor and future possible metapackage; not currently an implementation package
+- `minspec/recipes` — recipe policy and endpoint-stub repository; no public recipe catalog yet
+- `minspec/discussions` — discussion/index surface only, if retained; not source authority and not public governance
 
 ---
 
 ## Current Planned Names
 
 - `minspec/workbench` — maintainer validation host; not a package
-- `minspec/recipes` — recipes infrastructure
 - `minspec/ui-bundle` — reusable Symfony UX-oriented bundle
 - `minspec/ai-mate-extension` — vendor-neutral Mate/MCP extension
 - `minspec/standards` — standards/tooling
