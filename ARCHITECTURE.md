@@ -6,7 +6,7 @@ MinSpec is a constraint-driven, package-first architecture project for building 
 
 It is designed to reduce architectural drift, keep installation deterministic, and make AI-assisted development work within defined Symfony-native boundaries.
 
-MinSpec is an independent community project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
+MinSpec is an independent project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
 
 ---
 
@@ -174,6 +174,16 @@ Example:
 
 - `minspec/skeleton`
 
+### Namespace Anchor / Future Metapackage
+
+An intentionally minimal repository that reserves and represents the canonical Composer namespace.
+
+Example:
+
+- `minspec/minspec`
+
+This is not currently an implementation package, framework, distribution, bundle, or runtime implementation.
+
 ### Maintainer Workbench
 
 A maintainer-only Symfony application used to validate packages, recipes, and Mate tooling in a real host application.
@@ -216,7 +226,7 @@ Example:
 
 ### Recipes Repository
 
-A dedicated repository for Symfony Flex recipes.
+A dedicated repository for Symfony Flex recipe policy and installation wiring.
 
 Recipes provide the installation and wiring contract for packages.
 
@@ -225,6 +235,8 @@ They are not the capability itself; the capability lives in the package.
 Example:
 
 - `minspec/recipes`
+
+During incubation, the recipes repository is a policy / endpoint-stub surface with no public recipe catalog yet.
 
 ---
 
@@ -288,10 +300,16 @@ MinSpec does not aim to be:
 
 The organization reset is intentionally conservative.
 
-The currently functional repositories are:
+Functional foundation repositories:
 
 - `minspec/.github`
 - `minspec/skeleton`
+
+Created but not implementation-complete repositories:
+
+- `minspec/minspec` — namespace anchor and future possible metapackage
+- `minspec/recipes` — recipe policy and endpoint-stub repository; no public recipe catalog yet
+- `minspec/discussions` — discussion/index surface only, if retained
 
 The current planned development order is:
 
