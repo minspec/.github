@@ -2,7 +2,7 @@
 
 This document classifies the repository types used by MinSpec.
 
-MinSpec is an independent community project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
+MinSpec is an independent project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
 
 ---
 
@@ -43,7 +43,28 @@ Provides the canonical application shell for new MinSpec projects.
 
 ---
 
-## 3. Maintainer Workbench Repository
+## 3. Namespace Anchor / Future Metapackage Repository
+
+### Example
+
+- `minspec/minspec`
+
+### Purpose
+
+Reserves and represents the canonical Composer namespace for MinSpec.
+
+It may later become a curated Composer metapackage for selected MinSpec packages.
+
+### Characteristics
+
+- intentionally minimal
+- not currently an implementation package
+- not a working framework, distribution, bundle, or runtime implementation
+- future metapackage role must remain explicit and curated
+
+---
+
+## 4. Maintainer Workbench Repository
 
 ### Example
 
@@ -68,7 +89,7 @@ It is also the primary working environment for MinSpec-specific AI/Mate tooling.
 
 ---
 
-## 4. Recipes Infrastructure Repository
+## 5. Recipes Infrastructure Repository
 
 ### Example
 
@@ -76,11 +97,14 @@ It is also the primary working environment for MinSpec-specific AI/Mate tooling.
 
 ### Purpose
 
-Stores Symfony Flex recipes separate from package code.
+Stores Symfony Flex recipe policy and deterministic installation wiring separate from package code.
 
 ### Characteristics
 
 - recipe-only repository
+- created policy / endpoint-stub surface during incubation
+- no public recipe catalog yet
+- no placeholder recipes
 - deterministic package wiring
 - versioned recipe structure
 - future recipe ownership metadata
@@ -88,7 +112,7 @@ Stores Symfony Flex recipes separate from package code.
 
 ---
 
-## 5. Reusable Bundle Repository
+## 6. Reusable Bundle Repository
 
 ### Examples
 
@@ -110,7 +134,7 @@ Provides reusable Symfony runtime features that can be installed across multiple
 
 ---
 
-## 6. UX Bundle Repository
+## 7. UX Bundle Repository
 
 ### Example
 
@@ -131,7 +155,7 @@ Provides frontend assets, Stimulus controllers, Live/Twig components, Turbo defa
 
 ---
 
-## 7. AI/Mate Extension Repository
+## 8. AI/Mate Extension Repository
 
 ### Example
 
@@ -152,7 +176,7 @@ Provides MinSpec-specific development-time AI tooling through Mate/MCP-compatibl
 
 ---
 
-## 8. Optional Vendor Adapter Repository
+## 9. Optional Vendor Adapter Repository
 
 ### Examples
 
@@ -171,7 +195,7 @@ Provides optional setup files, prompts, MCP config examples, or guidance for a s
 
 ---
 
-## 9. Standards / Tooling Repository
+## 10. Standards / Tooling Repository
 
 ### Example
 
@@ -189,7 +213,7 @@ Provides reusable standards, analysis rules, and validation support for MinSpec 
 
 ---
 
-## 10. Deferred Repository Concept
+## 11. Deferred Repository Concept
 
 ### Examples
 
@@ -226,6 +250,12 @@ These names are acknowledged as concepts or historical explorations, but are not
 - changes should favor stability and minimalism
 - first-run guidance should remain practical, honest, and non-hype
 
+### Namespace Anchor / Future Metapackage
+
+- keep intentionally minimal while it is only a namespace anchor
+- do not imply working implementation status
+- future metapackage changes should remain curated and explicit
+
 ### Maintainer Workbench
 
 - changes must serve MinSpec contributor and maintainer workflow
@@ -238,6 +268,7 @@ These names are acknowledged as concepts or historical explorations, but are not
 - changes must be deterministic and installation-safe
 - recipe drift should be tightly controlled
 - ownership metadata should clarify package responsibility
+- real recipes should exist only when there is a real MinSpec package with a real installation contract
 
 ### Reusable Bundle
 
