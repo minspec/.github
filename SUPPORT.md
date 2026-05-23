@@ -2,7 +2,7 @@
 
 MinSpec is currently in foundation-building mode.
 
-MinSpec is an independent community project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
+MinSpec is an independent project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
 
 ---
 
@@ -10,14 +10,28 @@ MinSpec is an independent community project built for Symfony applications. It i
 
 Use GitHub issues in the relevant MinSpec repository for:
 
-- documentation corrections
+- questions
+- documentation clarity suggestions
 - package boundary questions
 - recipe behavior questions
 - MinSpec-specific installation issues
 - architecture clarification
 - reproducible bugs in MinSpec packages
+- evidence that an existing claim, package boundary, or workflow is wrong
 
 For organization-level doctrine, terminology, naming, or repository planning, use the `.github` repository.
+
+---
+
+## Incubation Boundary
+
+Support issues and feedback are welcome when they help clarify or validate the project.
+
+They do not create contributor status, source authority, or permission to open unsolicited pull requests.
+
+During incubation, MinSpec is not accepting unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, dependency changes, or AI-generated contribution patches.
+
+See `CONTRIBUTING.md` and `GOVERNANCE.md` for the current contribution and source-authority posture.
 
 ---
 
