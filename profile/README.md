@@ -1,4 +1,3 @@
-```markdown
 # MinSpec
 
 > **Developer AI Psychosis? MinSpec is just what the Doctor ordered!**
@@ -399,4 +398,3 @@ If the vision resonates with you:
 The foundation is being built now.
 
 The ecosystem comes next.
-```
