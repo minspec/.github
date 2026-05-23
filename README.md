@@ -4,7 +4,7 @@ This repository contains the default community health files and the canonical go
 
 It is the constitutional repository for the organization, not an implementation repository.
 
-MinSpec is an independent community project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
+MinSpec is an independent project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
 
 ---
 
@@ -19,6 +19,7 @@ This repository exists to define:
 - MinSpec terminology
 - the current AI/Mate development strategy
 - the package-first composition model
+- incubation governance and source-authority boundaries
 
 ---
 
@@ -33,6 +34,29 @@ This repository **does not** contain:
 - example applications
 
 Those belong in the installable repositories they describe.
+
+---
+
+## Incubation Contribution Posture
+
+MinSpec is currently founder-controlled and architect-led.
+
+During incubation, MinSpec is **not accepting unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, dependency changes, or AI-generated contribution patches**.
+
+Public feedback may still be useful. Public write authority is not open.
+
+The project may accept:
+
+- questions
+- reproducible bug reports
+- security reports through the published security process
+- design feedback
+- documentation clarity suggestions
+- evidence that an existing claim, package boundary, or workflow is wrong
+
+Unsolicited pull requests may be closed without review.
+
+This boundary protects MinSpec's source-of-truth, supply-chain posture, doctrine integrity, and early architecture while the foundation is still being established.
 
 ---
 
