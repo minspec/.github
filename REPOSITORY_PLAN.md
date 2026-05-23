@@ -4,13 +4,13 @@ This document defines the current repository reset plan for the MinSpec organiza
 
 The goal is to create only the repositories whose responsibilities are already clear, and defer speculative boundaries until they are proven.
 
-MinSpec is an independent community project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
+MinSpec is an independent project built for Symfony applications. It is not affiliated with, endorsed by, sponsored by, or maintained by Symfony SAS or the Symfony project. Symfony is a trademark of Symfony SAS.
 
 ---
 
 ## Current Functional Repositories
 
-Only these repositories should be treated as functional right now:
+Only these repositories should be treated as functional foundation repositories right now:
 
 ### `minspec/.github`
 
@@ -43,6 +43,61 @@ Notes:
 - The skeleton should remain intentionally small.
 - It is not a full distribution or product template.
 - Its default page should orient developers around Shell → Capability → Wiring → Ownership → Product.
+
+---
+
+## Created but Not Implementation-Complete
+
+These repositories exist, but they should not be described as broadly functional implementation repositories yet.
+
+### `minspec/minspec`
+
+Purpose:
+
+- canonical Composer namespace anchor for `minspec/*`
+- public package identity for MinSpec
+- future possible curated metapackage
+
+Status:
+
+- created, intentionally minimal, not currently an implementation package
+
+Notes:
+
+- This repository must not be described as a working framework, distribution, bundle, or runtime implementation.
+- If it becomes a metapackage later, that role should remain explicit and curated.
+
+### `minspec/recipes`
+
+Purpose:
+
+- Symfony Flex recipe policy and endpoint-stub repository
+- deterministic installation-time wiring model for future MinSpec packages
+- future recipe ownership metadata
+
+Status:
+
+- created policy / endpoint-stub surface
+- no public recipe catalog yet
+
+Notes:
+
+- Do not add placeholder recipes.
+- A recipe should exist only when there is a real MinSpec package with a real installation contract.
+- This repository should not be described as a fully functional recipe catalog until real recipes exist and work.
+
+### `minspec/discussions`
+
+Purpose:
+
+- public discussion/index surface, if retained
+- questions, design feedback, documentation clarity suggestions, and reproducible evidence
+
+Status:
+
+- created discussion surface only
+- not source authority
+- not public governance
 
 ---
 
@@ -84,18 +139,6 @@ Notes:
 
 - Workbench is not the public starter app.
 - Reusable behavior that originates here should be extracted into a package when the boundary is proven.
-
-### `minspec/recipes`
-
-Purpose:
-
-- Symfony Flex recipes repository
-- deterministic installation-time wiring for MinSpec packages
-- future recipe ownership metadata
-
-Status:
-
-- planned foundation repository
 
 ### `minspec/ai-mate-extension`
 
