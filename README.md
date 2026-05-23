@@ -103,21 +103,26 @@ It should preserve three ideas:
 
 ## Current Repository Status
 
-The currently functional MinSpec repositories are:
+### Functional foundation repositories
 
-- `minspec/.github`
-- `minspec/skeleton`
+- `minspec/.github` — organization doctrine, governance, terminology, planning, and community health defaults
+- `minspec/skeleton` — canonical MinSpec project shell
 
-The intended MinSpec repository/package design also includes:
+### Created but not implementation-complete
+
+- `minspec/minspec` — namespace anchor and future possible metapackage; not currently an implementation package
+- `minspec/recipes` — recipe policy and endpoint-stub repository; no public recipe catalog yet
+- `minspec/discussions` — discussion/index surface only, if retained; not source authority and not public governance
+
+### Planned next repositories
 
 - `minspec/workbench`
-- `minspec/recipes`
 - `minspec/ai-mate-extension`
 - `minspec/ui-bundle`
 - `minspec/dashboard-bundle`
 - `minspec/standards`
 
-These planned repositories remain part of the doctrine, but they should not be described as fully implemented until they actually exist and work.
+These planned repositories remain part of the doctrine, but they should not be described as implemented until they actually exist and work.
 
 ---
 
@@ -128,7 +133,8 @@ MinSpec is being reset around a smaller, clearer foundation:
 - one canonical skeleton
 - package-first composition
 - reusable Symfony bundles
-- a separate recipes repository
+- a separate recipes repository for deterministic installation wiring
+- a namespace anchor that may later become a curated metapackage
 - a maintainer workbench for validating package and recipe behavior
 - a vendor-neutral AI/Mate extension for development-time assistance
 - a UI bundle / MinSpec UI layer baseline for modern Symfony UX

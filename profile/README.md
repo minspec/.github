@@ -86,21 +86,26 @@ MinSpec is designed to reduce drift, reduce ambiguity, and make the path from **
 
 MinSpec is in **active foundation-building mode**.
 
-Only these repositories should currently be treated as functional:
+Functional foundation repositories:
 
-- [`.github`](https://github.com/minspec/.github) — organization doctrine, architecture, governance, terminology, and planning
+- [`.github`](https://github.com/minspec/.github) — organization doctrine, architecture, governance, terminology, planning, and community health defaults
 - [`skeleton`](https://github.com/minspec/skeleton) — canonical MinSpec project shell
 
-The intended repository/package design also includes:
+Created but not implementation-complete repositories:
+
+- [`minspec`](https://github.com/minspec/minspec) — namespace anchor and future possible metapackage; not currently an implementation package
+- [`recipes`](https://github.com/minspec/recipes) — recipe policy and endpoint-stub repository; no public recipe catalog yet
+- [`discussions`](https://github.com/minspec/discussions) — discussion/index surface only, if retained; not source authority and not public governance
+
+Planned next repositories:
 
 - `workbench` — maintainer-only development host and proving ground
-- `recipes` — Symfony Flex recipes and installation automation
-- `ui-bundle` — MinSpec UI bundle and UI layer foundation
 - `ai-mate-extension` — vendor-neutral MinSpec Mate/MCP development tooling
+- `ui-bundle` — MinSpec UI bundle and UI layer foundation
 - `dashboard-bundle` — future operational UI surface built on the MinSpec UI layer
 - `standards` — reusable standards, analysis, and validation support
 
-These planned repositories should remain in the doctrine, but they should not be described as fully implemented until they actually exist and work.
+These planned repositories should remain in the doctrine, but they should not be described as implemented until they actually exist and work.
 
 The vision currently extends beyond the implementation surface. That is intentional.
 
@@ -374,14 +379,16 @@ That repository defines the architecture, terminology, constraints, governance, 
 
 Suggested reading order:
 
-1. organization profile
-2. architecture overview
-3. terminology
-4. package guidelines
-5. repository taxonomy
-6. command and generation model
-7. AI/Mate strategy
-8. governance and contribution guidance
+1. `profile/README.md`
+2. `ARCHITECTURE.md`
+3. `TERMINOLOGY.md`
+4. `REPOSITORY_PLAN.md`
+5. `REPOSITORY_TAXONOMY.md`
+6. `PACKAGE_NAMING.md`
+7. `AI_STRATEGY.md`
+8. `GOVERNANCE.md`
+9. `CONTRIBUTING.md`
+10. `SECURITY.md`
 
 ---
 
