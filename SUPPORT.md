@@ -8,7 +8,7 @@ MinSpec is an independent project built for Symfony applications. It is not affi
 
 ## Project Support
 
-Use GitHub issues in the relevant MinSpec repository for:
+Use GitHub issues in the relevant MinSpec repository where enabled for:
 
 - questions
 - documentation clarity suggestions
@@ -21,13 +21,19 @@ Use GitHub issues in the relevant MinSpec repository for:
 
 For organization-level doctrine, terminology, naming, or repository planning, use the `.github` repository.
 
+Opening an issue or providing feedback does not grant contribution authority, source authority, maintainer status, or approval to submit code changes.
+
 ---
 
 ## Incubation Boundary
 
 Support issues and feedback are welcome when they help clarify or validate the project.
 
-They do not create contributor status, source authority, or permission to open unsolicited pull requests.
+They do not create contributor status, source authority, public governance, public write access, or permission to open unsolicited pull requests.
+
+Pull requests are enabled but restricted to collaborators only. Only users with repository write, maintain, or admin access may open pull requests.
+
+Collaborator PR access is an operational mechanism for trusted maintainers and approved collaborators. It is not a public contribution path.
 
 During incubation, MinSpec is not accepting unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, dependency changes, or AI-generated contribution patches.
 
@@ -48,6 +54,8 @@ MinSpec issues should be limited to MinSpec repositories, packages, recipes, doc
 ## Security Issues
 
 Do not open public issues for security vulnerabilities.
+
+Use GitHub private vulnerability reporting where available, or an official maintainer contact published by MinSpec.
 
 See `SECURITY.md` for reporting expectations.
 
