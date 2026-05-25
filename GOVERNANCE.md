@@ -88,8 +88,10 @@ That means:
 - speculative repo proliferation should be resisted
 - architecture-first review is expected for major structural changes
 - public positioning changes should be reviewed for Symfony/MinSpec distinction
-- public visibility does not imply public write access or contributor authority
-- AI/security tools may generate evidence, but they do not approve, merge, or mutate authority
+- public visibility does not imply public governance, public write access, or contributor authority
+- pull requests are enabled but restricted to collaborators only
+- collaborator PR access is an operational mechanism for trusted maintainers and approved collaborators, not a public contribution path
+- AI/security tools may generate evidence, but they do not approve, merge, mutate authority, or gain source authority from repository access settings
 
 MinSpec may be publicly visible before it is publicly governable.
 
@@ -98,6 +100,8 @@ MinSpec may be publicly visible before it is publicly governable.
 ## Incubation Contribution Boundary
 
 During incubation, MinSpec does not accept unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, dependency changes, or AI-generated contribution patches.
+
+Only users with repository write, maintain, or admin access may open pull requests. That access is reserved for trusted maintainers and approved collaborators.
 
 The project may accept:
 
@@ -108,9 +112,7 @@ The project may accept:
 - documentation clarity suggestions
 - evidence that an existing claim, package boundary, or workflow is wrong
 
-This feedback may inform maintainer decisions, but it does not create contributor status or source authority.
-
-Unsolicited pull requests may be closed without review.
+This feedback may inform maintainer decisions, but it does not create contributor status, source authority, maintainer status, or approval to submit code changes.
 
 ---
 
@@ -128,6 +130,8 @@ MinSpec should not accept trusted source material from:
 - unapproved dependency changes
 - unapproved GitHub Actions or workflow edits
 - agent-generated mutations outside a controlled source path
+
+AI agents, GitHub Apps, bots, automation, Dependabot, Copilot agents, browser agents, and external tools are not maintainers and do not gain source authority from collaborator-only PR settings.
 
 Security review is not a substitute for source authority.
 
