@@ -8,7 +8,7 @@ MinSpec is currently in founder-controlled incubation.
 
 During this phase, MinSpec is **not accepting unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, or AI-generated contribution patches**.
 
-Public feedback may still be useful. Public write authority is not open.
+MinSpec is public for visibility, review, reproducible feedback, and source-of-truth development. Public visibility does not imply public governance, public write access, or an open contribution process.
 
 ---
 
@@ -38,9 +38,13 @@ The organization does **not** currently accept:
 - AI-agent-generated mutation patches
 - pull requests that imply contributor authority
 
-Unsolicited pull requests may be closed without review.
+Pull requests are enabled but restricted to collaborators only. Only users with repository write, maintain, or admin access may open pull requests.
 
-That is not a judgment on the person opening the pull request. It is a source-of-truth and supply-chain boundary for the incubation phase.
+Collaborator PR access is an operational mechanism for trusted maintainers and approved collaborators. It is not a public contribution path.
+
+Opening an issue or providing feedback does not grant contribution authority, source authority, maintainer status, or approval to submit code changes.
+
+That is not a judgment on people who provide feedback. It is a source-of-truth and supply-chain boundary for the incubation phase.
 
 ---
 
@@ -153,6 +157,8 @@ When proposing documentation changes or feedback:
 ## AI-Assisted Work
 
 AI-assisted analysis may be useful as review input.
+
+AI agents, GitHub Apps, bots, automation, Dependabot, Copilot agents, browser agents, and external tools are not maintainers and do not gain source authority from collaborator-only PR settings.
 
 AI-generated code, documentation patches, workflow changes, or repository mutations are not accepted from unapproved external sources during incubation.
 
