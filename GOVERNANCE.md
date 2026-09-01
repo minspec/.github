@@ -92,6 +92,7 @@ That means:
 - pull requests are enabled but restricted to collaborators only
 - collaborator PR access is an operational mechanism for trusted maintainers and approved collaborators, not a public contribution path
 - AI/security tools may generate evidence, but they do not approve, merge, mutate authority, or gain source authority from repository access settings
+- maintainer-directed agent work is a recognized operational lane: agents working under the maintainer's explicit direction, through accounts the maintainer granted, may prepare, commit, and submit changes as draft pull requests with full origin trailers; they do not approve, merge, ratify, or change settings (see the org `CONTRIBUTING.md`, Maintainer-Directed Agent Work, maintainer decision 2026-09-01)
 
 MinSpec may be publicly visible before it is publicly governable.
 
@@ -99,7 +100,9 @@ MinSpec may be publicly visible before it is publicly governable.
 
 ## Incubation Contribution Boundary
 
-During incubation, MinSpec does not accept unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, dependency changes, or AI-generated contribution patches.
+During incubation, MinSpec does not accept unsolicited external contributors, code pull requests, documentation pull requests, package submissions, recipe submissions, workflow changes, dependency changes, or unsolicited AI-generated contribution patches.
+
+Maintainer-directed agent work enters through the lane defined in the org `CONTRIBUTING.md` (Maintainer-Directed Agent Work); it is maintainer work, not an external contribution.
 
 Only users with repository write, maintain, or admin access may open pull requests. That access is reserved for trusted maintainers and approved collaborators.
 
@@ -130,6 +133,8 @@ MinSpec should not accept trusted source material from:
 - unapproved dependency changes
 - unapproved GitHub Actions or workflow edits
 - agent-generated mutations outside a controlled source path
+
+The maintainer-directed agent lane is a controlled source path: work in that lane is directed by the maintainer, trailer-attributed to its producing agent, submitted as a reviewable draft pull request, and ratified by the maintainer before it lands.
 
 AI agents, GitHub Apps, bots, automation, Dependabot, Copilot agents, browser agents, and external tools are not maintainers and do not gain source authority from collaborator-only PR settings.
 
