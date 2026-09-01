@@ -14,6 +14,10 @@ jobs:
           persist-credentials: false
       - name: term wall
         uses: ./.github/actions/term-wall
+        env:
+          TERM_WALL: ${{ vars.TERM_WALL }}
+      - name: term wall tests
+        run: python3 -m unittest discover -s .github/actions/term-wall/tests
       - name: term wall self-test — fires on a planted fault, stays quiet on a clean neighbour, refuses an empty pattern
         env:
           TERM_WALL: ${{ vars.TERM_WALL }}
