@@ -1,0 +1,11 @@
+# Serena project config for minspec/.github — tracked, so every worktree and
+# session resolves the same scope. Uniform across the MinSpec org; the
+# PHP backend is Phpactor (PHAR, PHP >= 8.1, no Node).
+project_name: "minspec-github"
+languages: ["php_phpactor"]
+encoding: "utf-8"
+ignore_all_files_in_gitignore: true
+ignored_paths:
+  - "var/**"
+  - "vendor/**"
+read_only: false
