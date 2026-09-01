@@ -12,6 +12,18 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+      - name: term wall
+        uses: ./.github/actions/term-wall
+      - name: term wall fires on a planted fault, stays quiet on a clean neighbour
+        run: |
+          set -euo pipefail
+          wall="$GITHUB_WORKSPACE/.github/actions/term-wall/term-wall.sh"
+          t=$(mktemp -d); cd "$t"; git init -q; git config user.email ci@ci.invalid; git config user.name ci
+          printf 'clean\n' > c.txt; git add c.txt; git commit -qm clean
+          env -u GITHUB_EVENT_PATH bash "$wall"
+          printf 'x \x53\x63\x69\x65\x6e\x74\x44\x42 y\n' > p.txt; git add p.txt
+          if env -u GITHUB_EVENT_PATH bash "$wall"; then echo "::error::the wall stayed quiet on a planted fault"; exit 1; fi
+          echo "the wall fires on a planted fault and stays quiet on a clean neighbour"
       - name: JSON validity
         run: find . -name '*.json' -not -path './.git/*' -print0 | xargs -0 -r -n1 jq empty
       - name: YAML validity
