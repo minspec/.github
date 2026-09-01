@@ -1,0 +1,17 @@
+name: term wall
+description: >-
+  Refuses names this organisation does not use — in tracked content, in
+  file paths, in the change's commit messages (read from git, never from
+  an API: no token needed or declared), in the pull request title and
+  body, and in the branch name. The pattern comes only from the
+  TERM_WALL environment variable the calling step passes from the
+  org-level Actions variable — a composite action cannot read vars
+  itself, so this action declares no default; an unset or empty
+  pattern is a refusal, never a pass. The wall never spells what it
+  refuses and masks every hit it prints.
+runs:
+  using: composite
+  steps:
+    - name: term wall
+      shell: bash
+      run: bash "$GITHUB_ACTION_PATH/term-wall.sh"
