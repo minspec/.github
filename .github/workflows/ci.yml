@@ -3,11 +3,15 @@ on:
   pull_request:
   push:
     branches: [dev, main]
+permissions:
+  contents: read
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - name: JSON validity
         run: find . -name '*.json' -not -path './.git/*' -print0 | xargs -0 -r -n1 jq empty
       - name: YAML validity
