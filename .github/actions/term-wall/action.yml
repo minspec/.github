@@ -1,14 +1,17 @@
 name: term wall
 description: >-
   Refuses names this organisation does not use — in tracked content, in
-  file paths, in the change's commit messages, in the pull request title
-  and body, and in the branch name. The wall never spells what it
-  refuses and masks every hit it prints.
+  file paths, in the change's commit messages (read from git, never from
+  an API: no token needed or declared), in the pull request title and
+  body, and in the branch name. The pattern comes only from the
+  org-level Actions variable TERM_WALL; an empty pattern is a refusal,
+  never a pass. The wall never spells what it refuses and masks every
+  hit it prints.
 runs:
   using: composite
   steps:
     - name: term wall
       shell: bash
       env:
-        GH_TOKEN: ${{ github.token }}
+        TERM_WALL: ${{ vars.TERM_WALL }}
       run: bash "$GITHUB_ACTION_PATH/term-wall.sh"

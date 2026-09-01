@@ -14,16 +14,25 @@ jobs:
           persist-credentials: false
       - name: term wall
         uses: ./.github/actions/term-wall
-      - name: term wall fires on a planted fault, stays quiet on a clean neighbour
+      - name: term wall self-test — fires on a planted fault, stays quiet on a clean neighbour, refuses an empty pattern
+        env:
+          TERM_WALL: ${{ vars.TERM_WALL }}
+          TERM_WALL_PLANT: ${{ vars.TERM_WALL_PLANT }}
         run: |
           set -euo pipefail
           wall="$GITHUB_WORKSPACE/.github/actions/term-wall/term-wall.sh"
+          [ -n "$TERM_WALL_PLANT" ] || { echo "::error::TERM_WALL_PLANT is unset — the self-test cannot plant a fault"; exit 1; }
           t=$(mktemp -d); cd "$t"; git init -q; git config user.email ci@ci.invalid; git config user.name ci
           printf 'clean\n' > c.txt; git add c.txt; git commit -qm clean
           env -u GITHUB_EVENT_PATH bash "$wall"
-          printf 'x \x53\x63\x69\x65\x6e\x74\x44\x42 y\n' > p.txt; git add p.txt
-          if env -u GITHUB_EVENT_PATH bash "$wall"; then echo "::error::the wall stayed quiet on a planted fault"; exit 1; fi
-          echo "the wall fires on a planted fault and stays quiet on a clean neighbour"
+          printf 'x %s y\n' "$TERM_WALL_PLANT" > p.txt; git add p.txt
+          rc=0; out=$(env -u GITHUB_EVENT_PATH bash "$wall") || rc=$?
+          [ "$rc" -eq 1 ] || { echo "::error::the wall did not exit 1 on a planted fault (exit $rc)"; exit 1; }
+          case $out in *"$TERM_WALL_PLANT"*) echo "::error::the wall printed the raw plant"; exit 1;; esac
+          case $out in *"[forbidden name]"*) ;; *) echo "::error::the hit was not masked as [forbidden name]"; exit 1;; esac
+          rc=0; out=$(env -u GITHUB_EVENT_PATH TERM_WALL= bash "$wall" 2>/dev/null) || rc=$?
+          { [ "$rc" -eq 2 ] && [ -z "$out" ]; } || { echo "::error::an empty TERM_WALL did not refuse with exit 2 and empty stdout (exit $rc)"; exit 1; }
+          echo "the wall fires on a planted fault, stays quiet on a clean neighbour, and refuses an empty pattern"
       - name: JSON validity
         run: find . -name '*.json' -not -path './.git/*' -print0 | xargs -0 -r -n1 jq empty
       - name: YAML validity
