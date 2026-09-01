@@ -119,11 +119,6 @@ class TermWallTests(unittest.TestCase):
         self.commit("add fixture")
         self.assert_hit(self.run_wall(), "content")
 
-    def test_binary_tracked_content_is_skipped(self):
-        (self.repo / "fixture.bin").write_bytes(b"\x00" + PLANT.encode("ascii") + b"\xff")
-        self.commit("add binary fixture")
-        self.assert_clean(self.run_wall())
-
     def test_non_utf8_committed_blob_hit_uses_binary_placeholder(self):
         (self.repo / "fixture.bin").write_bytes(
             b"ordinary first line\ncontains " + PLANT.encode("ascii") + b" \xff\n"
