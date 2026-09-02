@@ -119,10 +119,61 @@ class TermWallTests(unittest.TestCase):
         self.commit("add fixture")
         self.assert_hit(self.run_wall(), "content")
 
-    def test_binary_tracked_content_is_skipped(self):
-        (self.repo / "fixture.bin").write_bytes(b"\x00" + PLANT.encode("ascii") + b"\xff")
-        self.commit("add binary fixture")
+    def test_non_utf8_committed_blob_hit_uses_binary_placeholder(self):
+        (self.repo / "fixture.bin").write_bytes(
+            b"ordinary first line\ncontains " + PLANT.encode("ascii") + b" \xff\n"
+        )
+        self.commit("add non-UTF-8 fixture")
+
+        result = self.run_wall()
+
+        self.assertEqual(result.returncode, 1, result)
+        self.assertEqual(result.stderr, "")
+        self.assertEqual(
+            result.stdout,
+            "content: fixture.bin line 2: [binary blob]\n",
+        )
+
+    def test_dangling_symlink_target_text_is_scanned_as_content(self):
+        os.symlink(f"absent-{PLANT}-target", self.repo / "dangling-link")
+        self.commit("add dangling symlink")
+
+        result = self.run_wall()
+
+        self.assertEqual(result.returncode, 1, result)
+        self.assertEqual(result.stderr, "")
+        self.assertEqual(
+            result.stdout,
+            "content: dangling-link line 1: absent-[forbidden name]-target\n",
+        )
+
+    def test_clean_symlink_to_committed_clean_file_is_clean(self):
+        os.symlink("clean.txt", self.repo / "clean-link")
+        self.commit("add clean symlink")
+
         self.assert_clean(self.run_wall())
+
+    def test_uncommitted_working_tree_content_is_not_scanned(self):
+        self.write("tracked.txt", "committed clean content\n")
+        self.commit("add clean tracked file")
+        self.write("tracked.txt", f"working tree contains {PLANT}\n")
+
+        self.assert_clean(self.run_wall())
+
+    def test_committed_blob_deleted_only_from_working_tree_is_scanned(self):
+        self.write("deleted.txt", f"committed content contains {PLANT}\n")
+        self.commit("add planted tracked file")
+        (self.repo / "deleted.txt").unlink()
+
+        result = self.run_wall()
+
+        self.assertEqual(result.returncode, 1, result)
+        self.assertEqual(result.stderr, "")
+        self.assertEqual(
+            result.stdout,
+            "content: deleted.txt line 1: committed content contains "
+            "[forbidden name]\n",
+        )
 
     def test_tracked_path_hit_is_masked(self):
         self.write(f"notes-{PLANT}.txt", "ordinary text\n")
