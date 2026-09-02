@@ -95,3 +95,7 @@ no dependence on the caller's cwd, environment, or git identity
 (configure user.name/user.email in each temp repo). Every test asserts
 the exit code and the output shape. Push and pull-request events are
 simulated with an event JSON file and the `GITHUB_*` variables.
+
+## Content surface, pinned
+
+The content surface is every blob the scanned commit's tree tracks, read from the object store, never from the working tree. Every blob is scanned bytewise; nothing tracked is unscannable. A symlink entry is scanned as the blob it is, its target path text, and is never followed. A blob that is not valid UTF-8 reports each hit with the location `<path> line <n>`, `n` counting newline-separated segments from 1, and the third field `[binary blob]` in place of the line. A blob the wall cannot read is a refusal of class `git work tree`: `git work tree: expected a readable blob at <path>; found <error>; needed the object`.

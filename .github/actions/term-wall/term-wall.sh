@@ -10,7 +10,12 @@
 # may not.
 #
 # Surfaces, in order:
-#   1. tracked file content (case-insensitive, binaries skipped)
+#   1. tracked file content — every blob the scanned commit's tree
+#      tracks, read from the object store, never from the working tree,
+#      and scanned bytewise (case-insensitive): nothing tracked is
+#      unscannable. A symlink entry is scanned as the blob it is — its
+#      target path text — and never followed. A blob that is not valid
+#      UTF-8 reports each hit with "[binary blob]" in place of the line.
 #   2. tracked file paths
 #   3. the commit messages of the change — pull_request: base..head;
 #      push: before..head, or only the head commit when before is all
@@ -77,13 +82,41 @@ scan_name() {  # scan_name <surface> <value> — for surfaces whose location
     emit "$surface" "$masked" "$masked"
 }
 
-# 1. tracked content
-content=$(git ls-files -z 2>/dev/null | xargs -0 -r grep -I -H -i -n -E -- "$pat" 2>/dev/null | mask || true)
-if [[ -n $content ]]; then
-    while IFS= read -r line; do
-        file=${line%%:*}; rest=${line#*:}
-        emit "content" "$file line ${rest%%:*}" "${rest#*:}"
-    done <<< "$content"
+# 1. tracked content — every blob of the scanned commit's tree, from the
+#    object store, bytewise (grep -a, never -I). A symlink entry (mode
+#    120000) is a blob holding its target path and is never followed; a
+#    gitlink (type commit) is not a blob and has no content here. A blob
+#    the wall cannot read is a refusal — could-not-look is never a pass.
+if git rev-parse -q --verify 'HEAD^{commit}' >/dev/null 2>&1; then
+    git ls-tree -r HEAD >/dev/null 2>&1 \
+        || refuse 'git work tree: expected a readable tree at HEAD; found git ls-tree cannot read it; needed the object'
+    while IFS= read -r -d '' entry; do
+        meta=${entry%%$'\t'*}
+        path=${entry#*$'\t'}
+        read -r _mode type oid <<< "$meta"
+        [[ $type == blob ]] || continue
+        if ! err=$(git cat-file -e "$oid" 2>&1); then
+            err=$(printf '%s' "${err:-git cat-file cannot read $oid}" | tr '\n' ' ')
+            refuse "$(printf 'git work tree: expected a readable blob at %s; found %s; needed the object' "$path" "$err" | mask)"
+        fi
+        if git cat-file blob "$oid" 2>/dev/null | iconv -f UTF-8 -t UTF-8 >/dev/null 2>&1; then
+            # NUL is valid UTF-8 (U+0000) but a shell variable cannot hold
+            # it — drop it before masking, never after.
+            found=$(git cat-file blob "$oid" 2>/dev/null | grep -a -i -n -E -- "$pat" | tr -d '\000' | mask || true)
+            [[ -n $found ]] || continue
+            while IFS= read -r line; do
+                emit "content" "$path line ${line%%:*}" "${line#*:}"
+            done <<< "$found"
+        else
+            # Not valid UTF-8: never echo its bytes — only line numbers
+            # (newline-separated segments, from 1) and "[binary blob]".
+            found=$(git cat-file blob "$oid" 2>/dev/null | grep -a -i -n -E -- "$pat" | cut -d: -f1 || true)
+            [[ -n $found ]] || continue
+            while IFS= read -r n; do
+                emit "content" "$path line $n" "[binary blob]"
+            done <<< "$found"
+        fi
+    done < <(git ls-tree -r -z HEAD 2>/dev/null)
 fi
 
 # 2. tracked paths
