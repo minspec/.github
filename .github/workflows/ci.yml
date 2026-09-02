@@ -30,7 +30,7 @@ jobs:
           t=$(mktemp -d); cd "$t"; git init -q; git config user.email ci@ci.invalid; git config user.name ci
           printf 'clean\n' > c.txt; git add c.txt; git commit -qm clean
           env -u GITHUB_EVENT_PATH bash "$wall"
-          printf 'x %s y\n' "$TERM_WALL_PLANT" > p.txt; git add p.txt
+          printf 'x %s y\n' "$TERM_WALL_PLANT" > p.txt; git add p.txt; git commit -qm plant
           rc=0; out=$(env -u GITHUB_EVENT_PATH bash "$wall") || rc=$?
           [ "$rc" -eq 1 ] || { echo "::error::the wall did not exit 1 on a planted fault (exit $rc)"; exit 1; }
           case $out in *"$TERM_WALL_PLANT"*) echo "::error::the wall printed the raw plant"; exit 1;; esac
